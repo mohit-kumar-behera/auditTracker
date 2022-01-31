@@ -1,8 +1,7 @@
 from fastavro import writer, reader, parse_schema
-import os, datetime, ast, urllib
 import pandas as pd
 import pyrebase
-import sweetviz as sv
+import os, datetime, ast, urllib
 
 class Tracker:
   VALUE_CREATED = '@inserted'
@@ -357,26 +356,3 @@ class Tracker:
 
     list(map(lambda audit: fetch_operation_obj(audit, records[record_field]), data_audits[f'{self.audit_filename}_audit']))
     return records
-  
-
-  def fetch_analysis(self):
-    self.__download_from_cloud(self.AUDIT_FILE_PATH)
-    
-    avro_records = []
-    with open(self.AUDIT_FILE_PATH, 'rb') as file:
-      avro_reader = reader(file)
-      for record in avro_reader:
-          avro_records.append(record)
-    
-    df_avro = pd.DataFrame(avro_records)
-    df_avro.drop(['timestamp'], axis = 1, inplace = True)
-    my_report = sv.analyze(df_avro)
-
-    HTML_PATH = os.path.join(self.BASE_DIR, 'report.html')
-    my_report.show_html(filepath = HTML_PATH, open_browser = False)
-
-    with open(HTML_PATH, 'r', encoding = 'utf_8') as file:
-      html_content = file.read()
-
-    self.__remove_from_local(self.AUDIT_FILE_PATH)
-    return html_content
