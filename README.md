@@ -22,7 +22,7 @@ You also need a firebase account for storing the deltas so create a firebase acc
 Tracker.initialize_firebase_storage(firebaseConfig)
 ```
 
-**FirebaseConfig** is a **dictionary-like** object as show below:-
+**FirebaseConfig** is a **dictionary -like** object as show below:-
 
 ```python
 firebaseConfig = {
