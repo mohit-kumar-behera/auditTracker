@@ -83,7 +83,7 @@ class Tracker:
       if sep not in k:
         obj[k] = v
       else:
-        key_splitted = k.split('.')
+        key_splitted = k.split(sep)
         def reconstruct_flat_keys(obj, key, val):
           if len(key) == 1:
             obj[key[0]] = val
