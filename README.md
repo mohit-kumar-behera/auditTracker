@@ -16,13 +16,13 @@ from auditTracker import Tracker
 
 **This package is used to track changes made in a file, currently, we only support JSON file format but in the future, we will make it work for more file formats.**
 
-You also need a firebase account for storing the deltas so create a firebase account and take the firebaseConfig as provided by firebase. Make sure to make the accessibility of the storage global. After that just initialize the storage as shown below.
+You also need a firebase account for storing the deltas so create a firebase account and take the firebaseConfig as provided by firebase. Make sure to make the accessibility of the storage global and configurations are correct. After that just initialize the storage as shown below.
 
 ```python
 Tracker.initialize_firebase_storage(firebaseConfig)
 ```
 
-**FirebaseConfig** is a **dictionary-like** object as show below:-
+**FirebaseConfig** is a **dictionary -like** object as show below:-
 
 ```python
 firebaseConfig = {
